@@ -35,30 +35,25 @@ public class Board {
         int colSum=0;
         for(int i=0; i<board.length; i++){
             int currentNum=board[i][0];
-            int rowCount=1;
             for(int j=1; j<board[0].length; j++){
                 rowSum+=currentNum;
                 if(board[i][j]==currentNum){
-                    rowSum-=currentNum;
-                    System.out.println(rowSum);
+                    rowSum+=currentNum;
                 }else{
+                    rowSum-=currentNum;
                     currentNum=board[i][j];
                 }
             }
         }
-        for(int i=0; i<board[0].length-1; i++){
+        for(int i=0; i<board[0].length; i++){
             int currentNum=board[0][i];
-            int colCount=1;
-            for(int j=0; j<board.length-1; j++){
-                if(board[j+1][i]==currentNum){
-                    colCount++;
+            for(int j=1; j<board.length; j++){
+                colSum+=currentNum;
+                if(board[j][i]==currentNum){
+                    colSum+=currentNum;
                 }else{
-                    if(colCount>1){
-                        colSum+=colCount*currentNum;
-                        System.out.println(colCount);
-                    }
-                    colCount=1;
-                    currentNum=board[j][i+1];
+                    colSum-=currentNum;
+                    currentNum=board[j][i];
                 }
             }
         }
